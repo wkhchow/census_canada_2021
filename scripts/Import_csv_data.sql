@@ -35,7 +35,7 @@ COPY pop_dwellings.pop_dwellings_db("DBuid","DBdguid","DBpop_2021","DBtdwell_202
 
 
 -- import census profile
-DROP TABLE IF EXISTS census_profile.census_profile_master;
+DROP TABLE IF EXISTS census_profile.census_profile_master CASCADE;
 CREATE TABLE census_profile.census_profile_master
 (
 "CENSUS_YEAR" varchar,
@@ -63,9 +63,9 @@ CREATE TABLE census_profile.census_profile_master
 );
 
 -- import exposure from csv
-COPY census_profile.census_profile_master("CENSUS_YEAR","DGUID","ALT_GEO_CODE","GEO_LEVEL","GEO_NAME","TNR","DATA_QUALITY_FLAG","CHARACTERISTIC_ID","CHARACTERISTIC_NAME","CHARACTERISTIC_NOTE","C1_COUNT_TOTAL","SYMBOL_TOTAL"
+COPY census_profile.census_profile_master("CENSUS_YEAR","DGUID","ALT_GEO_CODE","GEO_LEVEL","GEO_NAME","TNR","DATA_QUALITY_FLAG","CHARACTERISTIC_ID","CHARACTERISTIC_NAME","CHARACTERISTIC_NOTE","C1_COUNT_TOTAL","SYMBOL_TOTAL",
 "C2_COUNT_MEN+","SYMBOL_MEN","C3_COUNT_WOMEN+","SYMBOL_WOMEN","C10_RATE_TOTAL","SYMBOL_RATE_TOTAL","C11_RATE_MEN+","SYMBOL_RATE_MEN","C12_RATE_WOMEN+","SYMBOL_RATE_WOMEN" )
-    FROM 'D:\Workspace\Census 2021\source_data\census_profile.csv'
+    FROM 'D:\Workspace\Census 2021\source_data\census_profile_test.csv'
         WITH 
           DELIMITER AS ','
           CSV HEADER ;
