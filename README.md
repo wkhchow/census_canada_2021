@@ -24,15 +24,15 @@ Scripts are stored in the script folder in GitHub whereas source / processed dat
 All data compressed in 7zip. 7-Zip can be downloaded and installed at [https://www.7-zip.org/](https://www.7-zip.org/)
 
 - boundaries - boundary geometries / reference table
-		- Census_Boundaries_2021_Cartographic.7z
-		- Census_Boundaries_2021_Digital.7z
-		- DGUID_Reference.7z - DGUID lookup table to reference to various census geometry levels
+	- Census_Boundaries_2021_Cartographic.7z
+	- Census_Boundaries_2021_Digital.7z
+	- DGUID_Reference.7z - DGUID lookup table to reference to various census geometry levels
  - db_backup - database dumps
-		 - census_2021_sept27.7z || (up to August 17, 2002 census release)
+	- census_2021_sept27.7z || (up to August 17, 2002 census release)
  - processed - processed GeoPackages
-		 - census_profile_august_da_canada.7z - August census release, dissemination area geometry
-		 - census_profile_july2022.7z - July census release, in dissemination area, and aggregated to census subdivision, census division, and province/territorial geometries
-		 - population_db.7z - population at dissemination block geometry
+	- census_profile_august_da_canada.7z - August census release, dissemination area geometry
+	- census_profile_july2022.7z - July census release, in dissemination area, and aggregated to census subdivision, census division, and province/territorial geometries
+	- population_db.7z - population at dissemination block geometry
 - source data - source data compiled from Statistics Canada
-		- census profile july.7z - July data release
-		- census profile august.7z - August data release
+	- census profile july.7z - July data release
+	- census profile august.7z - August data release
