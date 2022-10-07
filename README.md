@@ -5,7 +5,9 @@
 Repo containing sql scripts, links to source and processed data for census 2021 data dissemination. Source data is imported into a PostgresSQL with PostGIS extension database, processed and attached with census boundaries exported into GeoPackage for GIS use.
 
 Census Profile data is released in stages, and is downloaded to be processed when new data becomes available.
+
 You can find the download page [here.](https://www12.statcan.gc.ca/census-recensement/2021/dp-pd/prof/details/download-telecharger.cfm?Lang=E)
+
 Release schedule can be found [here.](https://www12.statcan.gc.ca/census-recensement/2021/ref/prodserv/release-diffusion-eng.cfm)
 
 Scripts are stored in the script folder in GitHub whereas source / processed data is stored on [OneDrive.](https://1drv.ms/u/s!ArfoJn5WUSjQgsZgK3uSHRasQDDQSA?e=N5YxBW)
