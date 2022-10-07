@@ -28,7 +28,7 @@ All data compressed in 7zip. 7-Zip can be downloaded and installed at [https://w
 	- Census_Boundaries_2021_Digital.7z
 	- DGUID_Reference.7z - DGUID lookup table to reference to various census geometry levels
  - db_backup - database dumps
-	- census_2021_sept27.7z || (up to August 17, 2002 census release)
+	- census_2021_sept27.7z (up to August 17, 2002 census release)
  - processed - processed GeoPackages
 	- census_profile_august_da_canada.7z - August census release, dissemination area geometry
 	- census_profile_july2022.7z - July census release, in dissemination area, and aggregated to census subdivision, census division, and province/territorial geometries
