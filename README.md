@@ -1,6 +1,7 @@
 
 # census_canada_2021
-***Current processed data up to August 17, 2022 Linguistic diversity and use of English and French in Canada***
+~~~***Current processed data up to August 17, 2022 Linguistic diversity and use of English and French in Canada***~~~
+***Current processed data up to September 21, 2022 First Nations people, Métis and Inuit in Canada, Canada's housing portrait***
 
 Repo containing sql scripts, links to source and processed data for census 2021 data dissemination. Source data is imported into a PostgresSQL with PostGIS extension database, processed and attached with census boundaries exported into GeoPackage for GIS use.
 
@@ -28,11 +29,15 @@ All data compressed in 7zip. 7-Zip can be downloaded and installed at [https://w
 	- Census_Boundaries_2021_Digital.7z
 	- DGUID_Reference.7z - DGUID lookup table to reference to various census geometry levels
  - db_backup - database dumps
-	- census_2021_sept27.7z (up to August 17, 2002 census release)
+	- census_2021_db_aug.7z (up to August 17, 2002 census release)
+	- census_2021_db_sept.7z (up to August 21, 2002 census release)
  - processed - processed GeoPackages
-	- census_profile_august_da_canada.7z - August census release, dissemination area geometry
+ 	- census_profile_august_da_canada.7z - August census release, dissemination area geometry
+	- census_profile_sept_da_canada.7z - Sept census release, dissemination area geometry
 	- census_profile_july2022.7z - July census release, in dissemination area, and aggregated to census subdivision, census division, and province/territorial geometries
-	- population_db.7z - population at dissemination block geometry
+	- population_db.7z - population, dissemination block geometry
 - source data - source data compiled from Statistics Canada
 	- census profile july.7z - July data release
 	- census profile august.7z - August data release
+	- census profile sept.7z - Sept data release
+	- population_dwelling_db.7z - population at disseimation block level
