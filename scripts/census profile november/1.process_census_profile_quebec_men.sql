@@ -1,14 +1,14 @@
 -- process census profile using tablefunc extension and crosstab function
 
--- {P/T}
+-- quebec
 -- process census profile using tablefunc extension and crosstab function
 
--- {P/T} nov total part 1 up to 1499 columns
-DROP TABLE IF EXISTS census_profile.census_profile_nov_{P/T}_total_temp;
-CREATE TABLE census_profile.census_profile_nov_{P/T}_total_temp AS
+-- quebec nov total part 1 up to 1499 columns
+DROP TABLE IF EXISTS census_profile.census_profile_nov_quebec_total_temp;
+CREATE TABLE census_profile.census_profile_nov_quebec_total_temp AS
 (
 SELECT * 
-FROM CROSSTAB('SELECT "DGUID","CHARACTERISTIC_ID","C3_COUNT_WOMEN+" FROM census_profile.census_profile_nov_{P/T} 
+FROM CROSSTAB('SELECT "DGUID","CHARACTERISTIC_ID","C2_COUNT_MEN+" FROM census_profile.census_profile_nov_quebec 
 			  WHERE "GEO_LEVEL" = ''Dissemination area'' AND "CENSUS_YEAR" = ''2021''')
 AS
 ("DGUID" varchar, 
@@ -179,26 +179,26 @@ AS
 );
 
 
-DROP TABLE IF EXISTS census_profile.census_profile_nov_{P/T}_women;
-CREATE TABLE census_profile.census_profile_nov_{P/T}_women AS
+DROP TABLE IF EXISTS census_profile.census_profile_nov_quebec_men;
+CREATE TABLE census_profile.census_profile_nov_quebec_men AS
 (
 SELECT
 b."DAUID",
 a.*,
 b.geom
-FROM census_profile.census_profile_nov_{P/T}_total_temp a
+FROM census_profile.census_profile_nov_quebec_total_temp a
 LEFT JOIN boundaries."Geometry_DAUID" b ON a."DGUID" = b."DGUID");
 
-DROP TABLE IF EXISTS census_profile.census_profile_nov_{P/T}_total_temp;
+DROP TABLE IF EXISTS census_profile.census_profile_nov_quebec_total_temp;
 
 
 
--- {P/T} nov total part 2 1500 to 2631 coluns
-DROP TABLE IF EXISTS census_profile.census_profile_nov_{P/T}_total_temp;
-CREATE TABLE census_profile.census_profile_nov_{P/T}_total_temp AS
+-- quebec nov total part 2 1500 to 2631 coluns
+DROP TABLE IF EXISTS census_profile.census_profile_nov_quebec_total_temp;
+CREATE TABLE census_profile.census_profile_nov_quebec_total_temp AS
 (
 SELECT * 
-FROM CROSSTAB('SELECT "DGUID","CHARACTERISTIC_ID","C3_COUNT_WOMEN+" FROM census_profile.census_profile_nov_{P/T} 
+FROM CROSSTAB('SELECT "DGUID","CHARACTERISTIC_ID","C2_COUNT_MEN+" FROM census_profile.census_profile_nov_quebec 
 			  WHERE "GEO_LEVEL" = ''Dissemination area'' AND "CENSUS_YEAR" = ''2021''')
 AS
 ("DGUID" varchar, 
@@ -330,22 +330,22 @@ AS
 );
 
 
-DROP TABLE IF EXISTS census_profile.census_profile_nov_{P/T}_women2;
-CREATE TABLE census_profile.census_profile_nov_{P/T}_women2 AS
+DROP TABLE IF EXISTS census_profile.census_profile_nov_quebec_men2;
+CREATE TABLE census_profile.census_profile_nov_quebec_men2 AS
 (
 SELECT
 b."DAUID",
 a.*,
 b.geom
-FROM census_profile.census_profile_nov_{P/T}_total_temp a
+FROM census_profile.census_profile_nov_quebec_total_temp a
 LEFT JOIN boundaries."Geometry_DAUID" b ON a."DGUID" = b."DGUID");
 
-DROP TABLE IF EXISTS census_profile.census_profile_nov_{P/T}_total_temp;
+DROP TABLE IF EXISTS census_profile.census_profile_nov_quebec_total_temp;
 
 
 -- create indexes
-CREATE INDEX IF NOT EXISTS census_profile_nov_{P/T}_women_idx ON census_profile.census_profile_nov_{P/T}_women using GIST(geom);
-CREATE INDEX IF NOT EXISTS census_profile_nov_{P/T}_women_dauid_idx ON census_profile.census_profile_nov_{P/T}_women ("DAUID");
+CREATE INDEX IF NOT EXISTS census_profile_nov_quebec_men_idx ON census_profile.census_profile_nov_quebec_men using GIST(geom);
+CREATE INDEX IF NOT EXISTS census_profile_nov_quebec_men_dauid_idx ON census_profile.census_profile_nov_quebec_men ("DAUID");
 
-CREATE INDEX IF NOT EXISTS census_profile_nov_{P/T}_women2_idx ON census_profile.census_profile_nov_{P/T}_women2 using GIST(geom);
-CREATE INDEX IF NOT EXISTS census_profile_nov_{P/T}_women2_dauid_idx ON census_profile.census_profile_nov_{P/T}_women2 ("DAUID");
+CREATE INDEX IF NOT EXISTS census_profile_nov_quebec_men2_idx ON census_profile.census_profile_nov_quebec_men2 using GIST(geom);
+CREATE INDEX IF NOT EXISTS census_profile_nov_quebec_men2_dauid_idx ON census_profile.census_profile_nov_quebec_men2 ("DAUID");

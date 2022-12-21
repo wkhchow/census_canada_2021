@@ -1,14 +1,14 @@
 -- process census profile using tablefunc extension and crosstab function
 
--- bc
+-- {P/T}
 -- process census profile using tablefunc extension and crosstab function
 
--- bc sept total
-DROP TABLE IF EXISTS census_profile.census_profile_sept_{P/T}_total_temp;
-CREATE TABLE census_profile.census_profile_sept_{P/T}_total_temp AS
+-- {P/T} nov total part 1 up to 1499 columns
+DROP TABLE IF EXISTS census_profile.census_profile_nov_{P/T}_total_temp;
+CREATE TABLE census_profile.census_profile_nov_{P/T}_total_temp AS
 (
 SELECT * 
-FROM CROSSTAB('SELECT "DGUID","CHARACTERISTIC_ID","C1_COUNT_TOTAL" FROM census_profile.census_profile_sept_{P/T} 
+FROM CROSSTAB('SELECT "DGUID","CHARACTERISTIC_ID","C1_COUNT_TOTAL" FROM census_profile.census_profile_nov_{P/T} 
 			  WHERE "GEO_LEVEL" = ''Dissemination area'' AND "CENSUS_YEAR" = ''2021''')
 AS
 ("DGUID" varchar, 
@@ -33,6 +33,17 @@ AS
 "170" varchar,"171" varchar,"172" varchar,"173" varchar,"174" varchar,"175" varchar,"176" varchar,"177" varchar,"178" varchar,"179" varchar,
 "180" varchar,"181" varchar,"182" varchar,"183" varchar,"184" varchar,"185" varchar,"186" varchar,"187" varchar,"188" varchar,"189" varchar,
 "190" varchar,"191" varchar,"192" varchar,"193" varchar,"194" varchar,"195" varchar,"196" varchar,"197" varchar,"198" varchar,"199" varchar,
+
+"200" varchar,"201" varchar,"202" varchar,"203" varchar,"204" varchar,"205" varchar,"206" varchar,"207" varchar,"208" varchar,"209" varchar,
+"210" varchar,"211" varchar,"212" varchar,"213" varchar,"214" varchar,"215" varchar,"216" varchar,"217" varchar,"218" varchar,"219" varchar,
+"220" varchar,"221" varchar,"222" varchar,"223" varchar,"224" varchar,"225" varchar,"226" varchar,"227" varchar,"228" varchar,"229" varchar,
+"230" varchar,"231" varchar,"232" varchar,"233" varchar,"234" varchar,"235" varchar,"236" varchar,"237" varchar,"238" varchar,"239" varchar,
+"240" varchar,"241" varchar,"242" varchar,"243" varchar,"244" varchar,"245" varchar,"246" varchar,"247" varchar,"248" varchar,"249" varchar,
+"250" varchar,"251" varchar,"252" varchar,"253" varchar,"254" varchar,"255" varchar,"256" varchar,"257" varchar,"258" varchar,"259" varchar,
+"260" varchar,"261" varchar,"262" varchar,"263" varchar,"264" varchar,"265" varchar,"266" varchar,"267" varchar,"268" varchar,"269" varchar,
+"270" varchar,"271" varchar,"272" varchar,"273" varchar,"274" varchar,"275" varchar,"276" varchar,"277" varchar,"278" varchar,"279" varchar,
+"280" varchar,"281" varchar,"282" varchar,"283" varchar,"284" varchar,"285" varchar,"286" varchar,"287" varchar,"288" varchar,"289" varchar,
+"290" varchar,"291" varchar,"292" varchar,"293" varchar,"294" varchar,"295" varchar,"296" varchar,"297" varchar,"298" varchar,"299" varchar,
 
 "300" varchar,"301" varchar,"302" varchar,"303" varchar,"304" varchar,"305" varchar,"306" varchar,"307" varchar,"308" varchar,"309" varchar,
 "310" varchar,"311" varchar,"312" varchar,"313" varchar,"314" varchar,"315" varchar,"316" varchar,"317" varchar,"318" varchar,"319" varchar,
@@ -163,18 +174,178 @@ AS
 "1450" varchar,"1451" varchar,"1452" varchar,"1453" varchar,"1454" varchar,"1455" varchar,"1456" varchar,"1457" varchar,"1458" varchar,"1459" varchar,
 "1460" varchar,"1461" varchar,"1462" varchar,"1463" varchar,"1464" varchar,"1465" varchar,"1466" varchar,"1467" varchar,"1468" varchar,"1469" varchar,
 "1470" varchar,"1471" varchar,"1472" varchar,"1473" varchar,"1474" varchar,"1475" varchar,"1476" varchar,"1477" varchar,"1478" varchar,"1479" varchar,
-"1480" varchar,"1481" varchar,"1482" varchar,"1483" varchar,"1484" varchar,"1485" varchar,"1486" varchar)
+"1480" varchar,"1481" varchar,"1482" varchar,"1483" varchar,"1484" varchar,"1485" varchar,"1486" varchar,"1487" varchar,"1488" varchar,"1489" varchar,
+"1490" varchar,"1491" varchar,"1492" varchar,"1493" varchar,"1494" varchar,"1495" varchar,"1496" varchar,"1497" varchar,"1498" varchar,"1499" varchar)
 );
 
 
-DROP TABLE IF EXISTS census_profile.census_profile_sept_{P/T}_total;
-CREATE TABLE census_profile.census_profile_sept_{P/T}_total AS
+DROP TABLE IF EXISTS census_profile.census_profile_nov_{P/T}_total;
+CREATE TABLE census_profile.census_profile_nov_{P/T}_total AS
 (
 SELECT
 b."DAUID",
 a.*,
 b.geom
-FROM census_profile.census_profile_sept_{P/T}_total_temp a
+FROM census_profile.census_profile_nov_{P/T}_total_temp a
 LEFT JOIN boundaries."Geometry_DAUID" b ON a."DGUID" = b."DGUID");
 
-DROP TABLE IF EXISTS census_profile.census_profile_sept_{P/T}_total_temp;
+DROP TABLE IF EXISTS census_profile.census_profile_nov_{P/T}_total_temp;
+
+
+
+-- {P/T} nov total part 2 1500 to 2631 coluns
+DROP TABLE IF EXISTS census_profile.census_profile_nov_{P/T}_total_temp;
+CREATE TABLE census_profile.census_profile_nov_{P/T}_total_temp AS
+(
+SELECT * 
+FROM CROSSTAB('SELECT "DGUID","CHARACTERISTIC_ID","C1_COUNT_TOTAL" FROM census_profile.census_profile_nov_{P/T} 
+			  WHERE "GEO_LEVEL" = ''Dissemination area'' AND "CENSUS_YEAR" = ''2021''')
+AS
+("DGUID" varchar, 
+"1500" varchar,"1501" varchar,"1502" varchar,"1503" varchar,"1504" varchar,"1505" varchar,"1506" varchar,"1507" varchar,"1508" varchar,"1509" varchar,
+"1510" varchar,"1511" varchar,"1512" varchar,"1513" varchar,"1514" varchar,"1515" varchar,"1516" varchar,"1517" varchar,"1518" varchar,"1519" varchar,
+"1520" varchar,"1521" varchar,"1522" varchar,"1523" varchar,"1524" varchar,"1525" varchar,"1526" varchar,"1527" varchar,"1528" varchar,"1529" varchar,
+"1530" varchar,"1531" varchar,"1532" varchar,"1533" varchar,"1534" varchar,"1535" varchar,"1536" varchar,"1537" varchar,"1538" varchar,"1539" varchar,
+"1540" varchar,"1541" varchar,"1542" varchar,"1543" varchar,"1544" varchar,"1545" varchar,"1546" varchar,"1547" varchar,"1548" varchar,"1549" varchar,
+"1550" varchar,"1551" varchar,"1552" varchar,"1553" varchar,"1554" varchar,"1555" varchar,"1556" varchar,"1557" varchar,"1558" varchar,"1559" varchar,
+"1560" varchar,"1561" varchar,"1562" varchar,"1563" varchar,"1564" varchar,"1565" varchar,"1566" varchar,"1567" varchar,"1568" varchar,"1569" varchar,
+"1570" varchar,"1571" varchar,"1572" varchar,"1573" varchar,"1574" varchar,"1575" varchar,"1576" varchar,"1577" varchar,"1578" varchar,"1579" varchar,
+"1580" varchar,"1581" varchar,"1582" varchar,"1583" varchar,"1584" varchar,"1585" varchar,"1586" varchar,"1587" varchar,"1588" varchar,"1589" varchar,
+"1590" varchar,"1591" varchar,"1592" varchar,"1593" varchar,"1594" varchar,"1595" varchar,"1596" varchar,"1597" varchar,"1598" varchar,"1599" varchar,
+
+"1600" varchar,"1601" varchar,"1602" varchar,"1603" varchar,"1604" varchar,"1605" varchar,"1606" varchar,"1607" varchar,"1608" varchar,"1609" varchar,
+"1610" varchar,"1611" varchar,"1612" varchar,"1613" varchar,"1614" varchar,"1615" varchar,"1616" varchar,"1617" varchar,"1618" varchar,"1619" varchar,
+"1620" varchar,"1621" varchar,"1622" varchar,"1623" varchar,"1624" varchar,"1625" varchar,"1626" varchar,"1627" varchar,"1628" varchar,"1629" varchar,
+"1630" varchar,"1631" varchar,"1632" varchar,"1633" varchar,"1634" varchar,"1635" varchar,"1636" varchar,"1637" varchar,"1638" varchar,"1639" varchar,
+"1640" varchar,"1641" varchar,"1642" varchar,"1643" varchar,"1644" varchar,"1645" varchar,"1646" varchar,"1647" varchar,"1648" varchar,"1649" varchar,
+"1650" varchar,"1651" varchar,"1652" varchar,"1653" varchar,"1654" varchar,"1655" varchar,"1656" varchar,"1657" varchar,"1658" varchar,"1659" varchar,
+"1660" varchar,"1661" varchar,"1662" varchar,"1663" varchar,"1664" varchar,"1665" varchar,"1666" varchar,"1667" varchar,"1668" varchar,"1669" varchar,
+"1670" varchar,"1671" varchar,"1672" varchar,"1673" varchar,"1674" varchar,"1675" varchar,"1676" varchar,"1677" varchar,"1678" varchar,"1679" varchar,
+"1680" varchar,"1681" varchar,"1682" varchar,"1683" varchar,"1684" varchar,"1685" varchar,"1686" varchar,"1687" varchar,"1688" varchar,"1689" varchar,
+"1690" varchar,"1691" varchar,"1692" varchar,"1693" varchar,"1694" varchar,"1695" varchar,"1696" varchar,"1697" varchar,"1698" varchar,"1699" varchar,
+
+"1700" varchar,"1701" varchar,"1702" varchar,"1703" varchar,"1704" varchar,"1705" varchar,"1706" varchar,"1707" varchar,"1708" varchar,"1709" varchar,
+"1710" varchar,"1711" varchar,"1712" varchar,"1713" varchar,"1714" varchar,"1715" varchar,"1716" varchar,"1717" varchar,"1718" varchar,"1719" varchar,
+"1720" varchar,"1721" varchar,"1722" varchar,"1723" varchar,"1724" varchar,"1725" varchar,"1726" varchar,"1727" varchar,"1728" varchar,"1729" varchar,
+"1730" varchar,"1731" varchar,"1732" varchar,"1733" varchar,"1734" varchar,"1735" varchar,"1736" varchar,"1737" varchar,"1738" varchar,"1739" varchar,
+"1740" varchar,"1741" varchar,"1742" varchar,"1743" varchar,"1744" varchar,"1745" varchar,"1746" varchar,"1747" varchar,"1748" varchar,"1749" varchar,
+"1750" varchar,"1751" varchar,"1752" varchar,"1753" varchar,"1754" varchar,"1755" varchar,"1756" varchar,"1757" varchar,"1758" varchar,"1759" varchar,
+"1760" varchar,"1761" varchar,"1762" varchar,"1763" varchar,"1764" varchar,"1765" varchar,"1766" varchar,"1767" varchar,"1768" varchar,"1769" varchar,
+"1770" varchar,"1771" varchar,"1772" varchar,"1773" varchar,"1774" varchar,"1775" varchar,"1776" varchar,"1777" varchar,"1778" varchar,"1779" varchar,
+"1780" varchar,"1781" varchar,"1782" varchar,"1783" varchar,"1784" varchar,"1785" varchar,"1786" varchar,"1787" varchar,"1788" varchar,"1789" varchar,
+"1790" varchar,"1791" varchar,"1792" varchar,"1793" varchar,"1794" varchar,"1795" varchar,"1796" varchar,"1797" varchar,"1798" varchar,"1799" varchar,
+
+"1800" varchar,"1801" varchar,"1802" varchar,"1803" varchar,"1804" varchar,"1805" varchar,"1806" varchar,"1807" varchar,"1808" varchar,"1809" varchar,
+"1810" varchar,"1811" varchar,"1812" varchar,"1813" varchar,"1814" varchar,"1815" varchar,"1816" varchar,"1817" varchar,"1818" varchar,"1819" varchar,
+"1820" varchar,"1821" varchar,"1822" varchar,"1823" varchar,"1824" varchar,"1825" varchar,"1826" varchar,"1827" varchar,"1828" varchar,"1829" varchar,
+"1830" varchar,"1831" varchar,"1832" varchar,"1833" varchar,"1834" varchar,"1835" varchar,"1836" varchar,"1837" varchar,"1838" varchar,"1839" varchar,
+"1840" varchar,"1841" varchar,"1842" varchar,"1843" varchar,"1844" varchar,"1845" varchar,"1846" varchar,"1847" varchar,"1848" varchar,"1849" varchar,
+"1850" varchar,"1851" varchar,"1852" varchar,"1853" varchar,"1854" varchar,"1855" varchar,"1856" varchar,"1857" varchar,"1858" varchar,"1859" varchar,
+"1860" varchar,"1861" varchar,"1862" varchar,"1863" varchar,"1864" varchar,"1865" varchar,"1866" varchar,"1867" varchar,"1868" varchar,"1869" varchar,
+"1870" varchar,"1871" varchar,"1872" varchar,"1873" varchar,"1874" varchar,"1875" varchar,"1876" varchar,"1877" varchar,"1878" varchar,"1879" varchar,
+"1880" varchar,"1881" varchar,"1882" varchar,"1883" varchar,"1884" varchar,"1885" varchar,"1886" varchar,"1887" varchar,"1888" varchar,"1889" varchar,
+"1890" varchar,"1891" varchar,"1892" varchar,"1893" varchar,"1894" varchar,"1895" varchar,"1896" varchar,"1897" varchar,"1898" varchar,"1899" varchar,
+
+"1900" varchar,"1901" varchar,"1902" varchar,"1903" varchar,"1904" varchar,"1905" varchar,"1906" varchar,"1907" varchar,"1908" varchar,"1909" varchar,
+"1910" varchar,"1911" varchar,"1912" varchar,"1913" varchar,"1914" varchar,"1915" varchar,"1916" varchar,"1917" varchar,"1918" varchar,"1919" varchar,
+"1920" varchar,"1921" varchar,"1922" varchar,"1923" varchar,"1924" varchar,"1925" varchar,"1926" varchar,"1927" varchar,"1928" varchar,"1929" varchar,
+"1930" varchar,"1931" varchar,"1932" varchar,"1933" varchar,"1934" varchar,"1935" varchar,"1936" varchar,"1937" varchar,"1938" varchar,"1939" varchar,
+"1940" varchar,"1941" varchar,"1942" varchar,"1943" varchar,"1944" varchar,"1945" varchar,"1946" varchar,"1947" varchar,"1948" varchar,"1949" varchar,
+"1950" varchar,"1951" varchar,"1952" varchar,"1953" varchar,"1954" varchar,"1955" varchar,"1956" varchar,"1957" varchar,"1958" varchar,"1959" varchar,
+"1960" varchar,"1961" varchar,"1962" varchar,"1963" varchar,"1964" varchar,"1965" varchar,"1966" varchar,"1967" varchar,"1968" varchar,"1969" varchar,
+"1970" varchar,"1971" varchar,"1972" varchar,"1973" varchar,"1974" varchar,"1975" varchar,"1976" varchar,"1977" varchar,"1978" varchar,"1979" varchar,
+"1980" varchar,"1981" varchar,"1982" varchar,"1983" varchar,"1984" varchar,"1985" varchar,"1986" varchar,"1987" varchar,"1988" varchar,"1989" varchar,
+"1990" varchar,"1991" varchar,"1992" varchar,"1993" varchar,"1994" varchar,"1995" varchar,"1996" varchar,"1997" varchar,"1998" varchar,"1999" varchar,
+
+"2000" varchar,"2001" varchar,"2002" varchar,"2003" varchar,"2004" varchar,"2005" varchar,"2006" varchar,"2007" varchar,"2008" varchar,"2009" varchar,
+"2010" varchar,"2011" varchar,"2012" varchar,"2013" varchar,"2014" varchar,"2015" varchar,"2016" varchar,"2017" varchar,"2018" varchar,"2019" varchar,
+"2020" varchar,"2021" varchar,"2022" varchar,"2023" varchar,"2024" varchar,"2025" varchar,"2026" varchar,"2027" varchar,"2028" varchar,"2029" varchar,
+"2030" varchar,"2031" varchar,"2032" varchar,"2033" varchar,"2034" varchar,"2035" varchar,"2036" varchar,"2037" varchar,"2038" varchar,"2039" varchar,
+"2040" varchar,"2041" varchar,"2042" varchar,"2043" varchar,"2044" varchar,"2045" varchar,"2046" varchar,"2047" varchar,"2048" varchar,"2049" varchar,
+"2050" varchar,"2051" varchar,"2052" varchar,"2053" varchar,"2054" varchar,"2055" varchar,"2056" varchar,"2057" varchar,"2058" varchar,"2059" varchar,
+"2060" varchar,"2061" varchar,"2062" varchar,"2063" varchar,"2064" varchar,"2065" varchar,"2066" varchar,"2067" varchar,"2068" varchar,"2069" varchar,
+"2070" varchar,"2071" varchar,"2072" varchar,"2073" varchar,"2074" varchar,"2075" varchar,"2076" varchar,"2077" varchar,"2078" varchar,"2079" varchar,
+"2080" varchar,"2081" varchar,"2082" varchar,"2083" varchar,"2084" varchar,"2085" varchar,"2086" varchar,"2087" varchar,"2088" varchar,"2089" varchar,
+"2090" varchar,"2091" varchar,"2092" varchar,"2093" varchar,"2094" varchar,"2095" varchar,"2096" varchar,"2097" varchar,"2098" varchar,"2099" varchar,
+
+"2100" varchar,"2101" varchar,"2102" varchar,"2103" varchar,"2104" varchar,"2105" varchar,"2106" varchar,"2107" varchar,"2108" varchar,"2109" varchar,
+"2110" varchar,"2111" varchar,"2112" varchar,"2113" varchar,"2114" varchar,"2115" varchar,"2116" varchar,"2117" varchar,"2118" varchar,"2119" varchar,
+"2120" varchar,"2121" varchar,"2122" varchar,"2123" varchar,"2124" varchar,"2125" varchar,"2126" varchar,"2127" varchar,"2128" varchar,"2129" varchar,
+"2130" varchar,"2131" varchar,"2132" varchar,"2133" varchar,"2134" varchar,"2135" varchar,"2136" varchar,"2137" varchar,"2138" varchar,"2139" varchar,
+"2140" varchar,"2141" varchar,"2142" varchar,"2143" varchar,"2144" varchar,"2145" varchar,"2146" varchar,"2147" varchar,"2148" varchar,"2149" varchar,
+"2150" varchar,"2151" varchar,"2152" varchar,"2153" varchar,"2154" varchar,"2155" varchar,"2156" varchar,"2157" varchar,"2158" varchar,"2159" varchar,
+"2160" varchar,"2161" varchar,"2162" varchar,"2163" varchar,"2164" varchar,"2165" varchar,"2166" varchar,"2167" varchar,"2168" varchar,"2169" varchar,
+"2170" varchar,"2171" varchar,"2172" varchar,"2173" varchar,"2174" varchar,"2175" varchar,"2176" varchar,"2177" varchar,"2178" varchar,"2179" varchar,
+"2180" varchar,"2181" varchar,"2182" varchar,"2183" varchar,"2184" varchar,"2185" varchar,"2186" varchar,"2187" varchar,"2188" varchar,"2189" varchar,
+"2190" varchar,"2191" varchar,"2192" varchar,"2193" varchar,"2194" varchar,"2195" varchar,"2196" varchar,"2197" varchar,"2198" varchar,"2199" varchar,
+
+"2200" varchar,"2201" varchar,"2202" varchar,"2203" varchar,"2204" varchar,"2205" varchar,"2206" varchar,"2207" varchar,"2208" varchar,"2209" varchar,
+"2210" varchar,"2211" varchar,"2212" varchar,"2213" varchar,"2214" varchar,"2215" varchar,"2216" varchar,"2217" varchar,"2218" varchar,"2219" varchar,
+"2220" varchar,"2221" varchar,"2222" varchar,"2223" varchar,"2224" varchar,"2225" varchar,"2226" varchar,"2227" varchar,"2228" varchar,"2229" varchar,
+"2230" varchar,"2231" varchar,"2232" varchar,"2233" varchar,"2234" varchar,"2235" varchar,"2236" varchar,"2237" varchar,"2238" varchar,"2239" varchar,
+"2240" varchar,"2241" varchar,"2242" varchar,"2243" varchar,"2244" varchar,"2245" varchar,"2246" varchar,"2247" varchar,"2248" varchar,"2249" varchar,
+"2250" varchar,"2251" varchar,"2252" varchar,"2253" varchar,"2254" varchar,"2255" varchar,"2256" varchar,"2257" varchar,"2258" varchar,"2259" varchar,
+"2260" varchar,"2261" varchar,"2262" varchar,"2263" varchar,"2264" varchar,"2265" varchar,"2266" varchar,"2267" varchar,"2268" varchar,"2269" varchar,
+"2270" varchar,"2271" varchar,"2272" varchar,"2273" varchar,"2274" varchar,"2275" varchar,"2276" varchar,"2277" varchar,"2278" varchar,"2279" varchar,
+"2280" varchar,"2281" varchar,"2282" varchar,"2283" varchar,"2284" varchar,"2285" varchar,"2286" varchar,"2287" varchar,"2288" varchar,"2289" varchar,
+"2290" varchar,"2291" varchar,"2292" varchar,"2293" varchar,"2294" varchar,"2295" varchar,"2296" varchar,"2297" varchar,"2298" varchar,"2299" varchar,
+
+"2300" varchar,"2301" varchar,"2302" varchar,"2303" varchar,"2304" varchar,"2305" varchar,"2306" varchar,"2307" varchar,"2308" varchar,"2309" varchar,
+"2310" varchar,"2311" varchar,"2312" varchar,"2313" varchar,"2314" varchar,"2315" varchar,"2316" varchar,"2317" varchar,"2318" varchar,"2319" varchar,
+"2320" varchar,"2321" varchar,"2322" varchar,"2323" varchar,"2324" varchar,"2325" varchar,"2326" varchar,"2327" varchar,"2328" varchar,"2329" varchar,
+"2330" varchar,"2331" varchar,"2332" varchar,"2333" varchar,"2334" varchar,"2335" varchar,"2336" varchar,"2337" varchar,"2338" varchar,"2339" varchar,
+"2340" varchar,"2341" varchar,"2342" varchar,"2343" varchar,"2344" varchar,"2345" varchar,"2346" varchar,"2347" varchar,"2348" varchar,"2349" varchar,
+"2350" varchar,"2351" varchar,"2352" varchar,"2353" varchar,"2354" varchar,"2355" varchar,"2356" varchar,"2357" varchar,"2358" varchar,"2359" varchar,
+"2360" varchar,"2361" varchar,"2362" varchar,"2363" varchar,"2364" varchar,"2365" varchar,"2366" varchar,"2367" varchar,"2368" varchar,"2369" varchar,
+"2370" varchar,"2371" varchar,"2372" varchar,"2373" varchar,"2374" varchar,"2375" varchar,"2376" varchar,"2377" varchar,"2378" varchar,"2379" varchar,
+"2380" varchar,"2381" varchar,"2382" varchar,"2383" varchar,"2384" varchar,"2385" varchar,"2386" varchar,"2387" varchar,"2388" varchar,"2389" varchar,
+"2390" varchar,"2391" varchar,"2392" varchar,"2393" varchar,"2394" varchar,"2395" varchar,"2396" varchar,"2397" varchar,"2398" varchar,"2399" varchar,
+
+"2400" varchar,"2401" varchar,"2402" varchar,"2403" varchar,"2404" varchar,"2405" varchar,"2406" varchar,"2407" varchar,"2408" varchar,"2409" varchar,
+"2410" varchar,"2411" varchar,"2412" varchar,"2413" varchar,"2414" varchar,"2415" varchar,"2416" varchar,"2417" varchar,"2418" varchar,"2419" varchar,
+"2420" varchar,"2421" varchar,"2422" varchar,"2423" varchar,"2424" varchar,"2425" varchar,"2426" varchar,"2427" varchar,"2428" varchar,"2429" varchar,
+"2430" varchar,"2431" varchar,"2432" varchar,"2433" varchar,"2434" varchar,"2435" varchar,"2436" varchar,"2437" varchar,"2438" varchar,"2439" varchar,
+"2440" varchar,"2441" varchar,"2442" varchar,"2443" varchar,"2444" varchar,"2445" varchar,"2446" varchar,"2447" varchar,"2448" varchar,"2449" varchar,
+"2450" varchar,"2451" varchar,"2452" varchar,"2453" varchar,"2454" varchar,"2455" varchar,"2456" varchar,"2457" varchar,"2458" varchar,"2459" varchar,
+"2460" varchar,"2461" varchar,"2462" varchar,"2463" varchar,"2464" varchar,"2465" varchar,"2466" varchar,"2467" varchar,"2468" varchar,"2469" varchar,
+"2470" varchar,"2471" varchar,"2472" varchar,"2473" varchar,"2474" varchar,"2475" varchar,"2476" varchar,"2477" varchar,"2478" varchar,"2479" varchar,
+"2480" varchar,"2481" varchar,"2482" varchar,"2483" varchar,"2484" varchar,"2485" varchar,"2486" varchar,"2487" varchar,"2488" varchar,"2489" varchar,
+"2490" varchar,"2491" varchar,"2492" varchar,"2493" varchar,"2494" varchar,"2495" varchar,"2496" varchar,"2497" varchar,"2498" varchar,"2499" varchar,
+
+"2500" varchar,"2501" varchar,"2502" varchar,"2503" varchar,"2504" varchar,"2505" varchar,"2506" varchar,"2507" varchar,"2508" varchar,"2509" varchar,
+"2510" varchar,"2511" varchar,"2512" varchar,"2513" varchar,"2514" varchar,"2515" varchar,"2516" varchar,"2517" varchar,"2518" varchar,"2519" varchar,
+"2520" varchar,"2521" varchar,"2522" varchar,"2523" varchar,"2524" varchar,"2525" varchar,"2526" varchar,"2527" varchar,"2528" varchar,"2529" varchar,
+"2530" varchar,"2531" varchar,"2532" varchar,"2533" varchar,"2534" varchar,"2535" varchar,"2536" varchar,"2537" varchar,"2538" varchar,"2539" varchar,
+"2540" varchar,"2541" varchar,"2542" varchar,"2543" varchar,"2544" varchar,"2545" varchar,"2546" varchar,"2547" varchar,"2548" varchar,"2549" varchar,
+"2550" varchar,"2551" varchar,"2552" varchar,"2553" varchar,"2554" varchar,"2555" varchar,"2556" varchar,"2557" varchar,"2558" varchar,"2559" varchar,
+"2560" varchar,"2561" varchar,"2562" varchar,"2563" varchar,"2564" varchar,"2565" varchar,"2566" varchar,"2567" varchar,"2568" varchar,"2569" varchar,
+"2570" varchar,"2571" varchar,"2572" varchar,"2573" varchar,"2574" varchar,"2575" varchar,"2576" varchar,"2577" varchar,"2578" varchar,"2579" varchar,
+"2580" varchar,"2581" varchar,"2582" varchar,"2583" varchar,"2584" varchar,"2585" varchar,"2586" varchar,"2587" varchar,"2588" varchar,"2589" varchar,
+
+"2590" varchar,"2591" varchar,"2592" varchar,"2593" varchar,"2594" varchar,"2595" varchar,"2596" varchar,"2597" varchar,"2598" varchar,"2599" varchar,
+"2600" varchar,"2601" varchar,"2602" varchar,"2603" varchar,"2604" varchar,"2605" varchar,"2606" varchar,"2607" varchar,"2608" varchar,"2609" varchar,
+"2610" varchar,"2611" varchar,"2612" varchar,"2613" varchar,"2614" varchar,"2615" varchar,"2616" varchar,"2617" varchar,"2618" varchar,"2619" varchar,
+"2620" varchar,"2621" varchar,"2622" varchar,"2623" varchar,"2624" varchar,"2625" varchar,"2626" varchar,"2627" varchar,"2628" varchar,"2629" varchar,
+"2630" varchar,"2631" varchar)
+);
+
+
+DROP TABLE IF EXISTS census_profile.census_profile_nov_{P/T}_total2;
+CREATE TABLE census_profile.census_profile_nov_{P/T}_total2 AS
+(
+SELECT
+b."DAUID",
+a.*,
+b.geom
+FROM census_profile.census_profile_nov_{P/T}_total_temp a
+LEFT JOIN boundaries."Geometry_DAUID" b ON a."DGUID" = b."DGUID");
+
+DROP TABLE IF EXISTS census_profile.census_profile_nov_{P/T}_total_temp;
+
+
+-- create indexes
+CREATE INDEX IF NOT EXISTS census_profile_nov_{P/T}_total_idx ON census_profile.census_profile_nov_{P/T}_total using GIST(geom);
+CREATE INDEX IF NOT EXISTS census_profile_nov_{P/T}_total_dauid_idx ON census_profile.census_profile_nov_{P/T}_total ("DAUID");
+
+CREATE INDEX IF NOT EXISTS census_profile_nov_{P/T}_total1_idx ON census_profile.census_profile_nov_{P/T}_total2 using GIST(geom);
+CREATE INDEX IF NOT EXISTS census_profile_nov_{P/T}_total1_dauid_idx ON census_profile.census_profile_nov_{P/T}_total2 ("DAUID");

@@ -8,7 +8,7 @@ DROP TABLE IF EXISTS census_profile.census_profile_nov_{P/T}_total_temp;
 CREATE TABLE census_profile.census_profile_nov_{P/T}_total_temp AS
 (
 SELECT * 
-FROM CROSSTAB('SELECT "DGUID","CHARACTERISTIC_ID","C3_COUNT_WOMEN+" FROM census_profile.census_profile_nov_{P/T} 
+FROM CROSSTAB('SELECT "DGUID","CHARACTERISTIC_ID","C2_COUNT_MEN+" FROM census_profile.census_profile_nov_{P/T} 
 			  WHERE "GEO_LEVEL" = ''Dissemination area'' AND "CENSUS_YEAR" = ''2021''')
 AS
 ("DGUID" varchar, 
@@ -179,8 +179,8 @@ AS
 );
 
 
-DROP TABLE IF EXISTS census_profile.census_profile_nov_{P/T}_women;
-CREATE TABLE census_profile.census_profile_nov_{P/T}_women AS
+DROP TABLE IF EXISTS census_profile.census_profile_nov_{P/T}_men;
+CREATE TABLE census_profile.census_profile_nov_{P/T}_men AS
 (
 SELECT
 b."DAUID",
@@ -198,7 +198,7 @@ DROP TABLE IF EXISTS census_profile.census_profile_nov_{P/T}_total_temp;
 CREATE TABLE census_profile.census_profile_nov_{P/T}_total_temp AS
 (
 SELECT * 
-FROM CROSSTAB('SELECT "DGUID","CHARACTERISTIC_ID","C3_COUNT_WOMEN+" FROM census_profile.census_profile_nov_{P/T} 
+FROM CROSSTAB('SELECT "DGUID","CHARACTERISTIC_ID","C2_COUNT_MEN+" FROM census_profile.census_profile_nov_{P/T} 
 			  WHERE "GEO_LEVEL" = ''Dissemination area'' AND "CENSUS_YEAR" = ''2021''')
 AS
 ("DGUID" varchar, 
@@ -330,8 +330,8 @@ AS
 );
 
 
-DROP TABLE IF EXISTS census_profile.census_profile_nov_{P/T}_women2;
-CREATE TABLE census_profile.census_profile_nov_{P/T}_women2 AS
+DROP TABLE IF EXISTS census_profile.census_profile_nov_{P/T}_men2;
+CREATE TABLE census_profile.census_profile_nov_{P/T}_men2 AS
 (
 SELECT
 b."DAUID",
@@ -344,8 +344,8 @@ DROP TABLE IF EXISTS census_profile.census_profile_nov_{P/T}_total_temp;
 
 
 -- create indexes
-CREATE INDEX IF NOT EXISTS census_profile_nov_{P/T}_women_idx ON census_profile.census_profile_nov_{P/T}_women using GIST(geom);
-CREATE INDEX IF NOT EXISTS census_profile_nov_{P/T}_women_dauid_idx ON census_profile.census_profile_nov_{P/T}_women ("DAUID");
+CREATE INDEX IF NOT EXISTS census_profile_nov_{P/T}_men_idx ON census_profile.census_profile_nov_{P/T}_men using GIST(geom);
+CREATE INDEX IF NOT EXISTS census_profile_nov_{P/T}_men_dauid_idx ON census_profile.census_profile_nov_{P/T}_men ("DAUID");
 
-CREATE INDEX IF NOT EXISTS census_profile_nov_{P/T}_women2_idx ON census_profile.census_profile_nov_{P/T}_women2 using GIST(geom);
-CREATE INDEX IF NOT EXISTS census_profile_nov_{P/T}_women2_dauid_idx ON census_profile.census_profile_nov_{P/T}_women2 ("DAUID");
+CREATE INDEX IF NOT EXISTS census_profile_nov_{P/T}_men2_idx ON census_profile.census_profile_nov_{P/T}_men2 using GIST(geom);
+CREATE INDEX IF NOT EXISTS census_profile_nov_{P/T}_men2_dauid_idx ON census_profile.census_profile_nov_{P/T}_men2 ("DAUID");
